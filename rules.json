@@ -1,0 +1,33 @@
+{
+    "validation_sets": [
+        {
+            "dataset_name": "Clientes",
+            "data_source_path": "data/customers_v2.csv",
+            "data_source_format": "csv",
+            "rules": [
+                {
+                    "rule_type": "is_unique",
+                    "column": "customer_id",
+                    "on_fail": "STOP",
+                    "quarantine": true
+                },
+                {
+                    "rule_type": "null_percentage_is_less_than",
+                    "column": "state",
+                    "params": {
+                        "threshold": 15
+                    },
+                    "on_fail": "WARN"
+                },
+                {
+                    "rule_type": "mean_is_between",
+                    "column": "age",
+                    "params": {
+                        "min": 20,
+                        "max": 40
+                    }
+                }
+            ]
+        }
+    ]
+}
